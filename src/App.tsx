@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useRef } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { INITIAL_BUILDINGS, DEFAULT_TARIFF } from './data/initialCity';
 import { BuildingData, BuildingId, BuildingControls, TariffConfig } from './types/city';
 import { runCitySimulation, getEnvironmentForHour } from './engine/simulationEngine';
@@ -231,6 +232,9 @@ export default function App() {
           onClose={() => setActiveView('city')}
         />
       )}
+      
+      {/* Vercel Web Analytics */}
+      <Analytics />
     </div>
   );
 }
