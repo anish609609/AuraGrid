@@ -101,33 +101,34 @@ export const ScenarioManager: React.FC<ScenarioManagerProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4">
-      <div className="max-w-3xl w-full bg-slate-950 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-2 sm:p-4">
+      <div className="max-w-3xl w-full bg-slate-950 border border-slate-800 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[96vh] sm:max-h-[90vh] animate-in fade-in zoom-in-95 duration-200">
         {/* Header */}
-        <div className="p-5 border-b border-slate-800 bg-slate-900/60 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-400">
-              <Layers className="w-5 h-5" />
+        <div className="p-3.5 sm:p-5 border-b border-slate-800 bg-slate-900/60 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-400 shrink-0">
+              <Layers className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
             <div>
-              <h2 className="text-base font-bold text-white tracking-wide">
-                Scenario Lab & Energy Comparison
+              <h2 className="text-sm sm:text-base font-bold text-white tracking-wide">
+                Scenario Lab & Comparison
               </h2>
-              <div className="text-xs text-slate-400">
+              <div className="text-[10px] sm:text-xs text-slate-400 truncate max-w-[260px] sm:max-w-none">
                 Compare multi-building operating conditions and test savings strategies
               </div>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors"
+            className="p-2 min-w-[40px] min-h-[40px] flex items-center justify-center text-slate-400 hover:text-white rounded-xl hover:bg-slate-800 transition-colors active:scale-95"
+            aria-label="Close scenario lab"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Content Body */}
-        <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-6 overflow-y-auto max-h-[70vh]">
+        <div className="p-3.5 sm:p-6 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 overflow-y-auto max-h-[82vh]">
           {/* Left Column: Scenarios List */}
           <div className="space-y-3 md:border-r md:border-slate-800 md:pr-4">
             <div className="flex items-center justify-between">

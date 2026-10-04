@@ -24,25 +24,23 @@ export const Header: React.FC<HeaderProps> = ({
   const isGridStressed = simulationResult.cityGridUtilizationPct >= 85;
 
   return (
-    <header className="fixed top-0 left-0 right-0 h-16 bg-slate-950/85 border-b border-slate-800/80 backdrop-blur-xl z-40 px-4 md:px-6 flex items-center justify-between gap-4">
+    <header className="fixed top-0 left-0 right-0 h-14 sm:h-16 bg-slate-950/90 border-b border-slate-800/80 backdrop-blur-xl z-40 px-3 sm:px-6 flex items-center justify-between gap-2 sm:gap-4">
       {/* Zone 1: Wordmark & Brand Title (Strictly single text element in display face, no pills) */}
-      <div className="flex items-center gap-3 shrink-0">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-slate-950 shadow-lg shadow-cyan-500/20">
-            <Zap className="w-5 h-5 fill-current" />
-          </div>
-          <div>
-            <h1 className="text-base font-bold tracking-tight text-white font-sans">
-              AuraGrid
-            </h1>
-            <div className="text-[10px] text-slate-400 font-mono tracking-wider uppercase">
-              Smart City Digital Twin
-            </div>
+      <div className="flex items-center gap-2.5 shrink-0">
+        <div className="w-7 h-7 sm:w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-slate-950 shadow-md sm:shadow-lg shadow-cyan-500/20">
+          <Zap className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
+        </div>
+        <div>
+          <h1 className="text-sm sm:text-base font-bold tracking-tight text-white font-sans leading-none">
+            AuraGrid
+          </h1>
+          <div className="text-[9px] sm:text-[10px] text-slate-400 font-mono tracking-wider uppercase mt-0.5">
+            Smart City Twin
           </div>
         </div>
       </div>
 
-      {/* Zone 2: City Overview Telemetry & Navigation */}
+      {/* Zone 2: City Overview Telemetry & Navigation (Desktop Full Bar) */}
       <div className="hidden xl:flex items-center gap-6 font-mono text-xs">
         {/* Total Load */}
         <div className="flex flex-col">
@@ -148,8 +146,8 @@ export const Header: React.FC<HeaderProps> = ({
         )}
       </div>
 
-      {/* Navigation View Segmented Controls */}
-      <nav className="flex items-center gap-1 bg-slate-900/70 p-1 rounded-xl border border-slate-800 text-xs shrink-0">
+      {/* Navigation View Segmented Controls (Desktop & Tablet only: hidden on mobile) */}
+      <nav aria-label="Desktop Navigation" className="hidden md:flex items-center gap-1 bg-slate-900/70 p-1 rounded-xl border border-slate-800 text-xs shrink-0">
         <button
           onClick={() => onSelectView('city')}
           className={`px-3 py-1.5 font-medium rounded-lg transition-all whitespace-nowrap ${
@@ -218,14 +216,32 @@ export const Header: React.FC<HeaderProps> = ({
         </button>
       </nav>
 
-      {/* Zone 3: Primary Action (Prominent ⚡ OPTIMIZE CITY Button) */}
-      <div className="flex items-center gap-2 shrink-0">
+      {/* Zone 3: Mobile Telemetry Capsule & Optimize Action */}
+      <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+        {/* Mobile Quick Telemetry Badge (Feeder & Total Load) */}
+        {onOpenFeederDashboard && (
+          <button
+            onClick={onOpenFeederDashboard}
+            className="flex xl:hidden items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-slate-900/90 border border-amber-500/40 text-amber-300 text-[11px] font-mono active:scale-95 transition-all min-h-[36px]"
+            title="Inspect 230kV Feeder Substation"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+            <span className="font-bold">
+              {(simulationResult.incomingBulkGridKW / 1000).toFixed(1)} MW
+            </span>
+          </button>
+        )}
+
+        {/* Primary Action Button (⚡ OPTIMIZE) */}
         <button
           onClick={onOpenOptimizeModal}
-          className="relative group flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold text-xs tracking-wide rounded-xl shadow-lg shadow-cyan-500/25 transition-all transform active:scale-95 whitespace-nowrap"
+          className="relative group flex items-center justify-center gap-1.5 px-2.5 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold text-xs tracking-wide rounded-xl shadow-md sm:shadow-lg shadow-cyan-500/25 transition-all transform active:scale-95 whitespace-nowrap min-h-[36px] sm:min-h-[40px]"
+          title="Automated AI Peak Shaving & Optimization"
+          aria-label="Optimize City"
         >
-          <Sparkles className="w-4 h-4 fill-slate-950" />
-          <span>⚡ OPTIMIZE CITY</span>
+          <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-slate-950" />
+          <span className="hidden xs:inline sm:inline">⚡ OPTIMIZE</span>
+          <span className="xs:hidden sm:hidden">⚡</span>
         </button>
       </div>
     </header>

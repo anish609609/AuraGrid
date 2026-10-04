@@ -95,16 +95,19 @@ export const BuildingPanel: React.FC<BuildingPanelProps> = ({
   );
 
   return (
-    <div className="fixed top-20 right-4 bottom-20 w-[420px] max-w-[calc(100vw-32px)] bg-slate-950/90 border border-slate-800 rounded-2xl shadow-2xl backdrop-blur-xl flex flex-col z-30 overflow-hidden transition-all duration-300">
+    <div className="fixed inset-x-0 bottom-0 top-14 sm:top-20 sm:bottom-20 sm:right-4 sm:left-auto sm:w-[440px] sm:max-w-[calc(100vw-32px)] bg-slate-950/95 border-t sm:border border-slate-800 rounded-t-3xl sm:rounded-2xl shadow-2xl backdrop-blur-2xl flex flex-col z-50 overflow-hidden transition-all duration-300">
+      {/* Mobile Top Grab Handle */}
+      <div className="w-12 h-1 bg-slate-700/80 rounded-full mx-auto mt-2 sm:hidden shrink-0" />
+
       {/* Header */}
-      <div className="p-4 border-b border-slate-800/80 flex items-start justify-between bg-slate-900/40">
+      <div className="p-3.5 sm:p-4 border-b border-slate-800/80 flex items-start justify-between bg-slate-900/40">
         <div>
           <div className="flex items-center gap-2">
             <span
-              className="w-2.5 h-2.5 rounded-full"
+              className="w-2.5 h-2.5 rounded-full shrink-0"
               style={{ backgroundColor: building.accentColor }}
             />
-            <h2 className="text-base font-bold text-slate-100 tracking-wide">
+            <h2 className="text-sm sm:text-base font-bold text-slate-100 tracking-wide">
               {building.name}
             </h2>
           </div>
@@ -114,15 +117,15 @@ export const BuildingPanel: React.FC<BuildingPanelProps> = ({
         </div>
         <button
           onClick={onClose}
-          className="p-1.5 text-slate-400 hover:text-slate-100 hover:bg-slate-800 rounded-lg transition-colors"
+          className="p-2 min-w-[40px] min-h-[40px] flex items-center justify-center text-slate-400 hover:text-slate-100 hover:bg-slate-800 rounded-xl transition-colors active:scale-95"
           aria-label="Close panel"
         >
-          <X className="w-4 h-4" />
+          <X className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
       </div>
 
       {/* Tabs */}
-      <div className="flex border-b border-slate-800/80 bg-slate-900/20 px-2 py-1 gap-1 overflow-x-auto no-scrollbar">
+      <div className="flex border-b border-slate-800/80 bg-slate-900/20 px-2 py-1.5 gap-1.5 overflow-x-auto no-scrollbar touch-pan-x">
         <button
           onClick={() => setActiveTab('controls')}
           className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg transition-all ${

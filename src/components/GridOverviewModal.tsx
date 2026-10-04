@@ -76,33 +76,34 @@ export const GridOverviewModal: React.FC<GridOverviewModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4">
-      <div className="max-w-2xl w-full bg-slate-950 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-2 sm:p-4">
+      <div className="max-w-2xl w-full bg-slate-950 border border-slate-800 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[96vh] sm:max-h-[92vh] animate-in fade-in zoom-in-95 duration-200">
         {/* Header */}
-        <div className="p-5 border-b border-slate-800 bg-slate-900/60 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400">
-              <Cpu className="w-5 h-5" />
+        <div className="p-3.5 sm:p-5 border-b border-slate-800 bg-slate-900/60 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 shrink-0">
+              <Cpu className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
             <div>
-              <h2 className="text-base font-bold text-white tracking-wide">
+              <h2 className="text-sm sm:text-base font-bold text-white tracking-wide">
                 Electrical Grid & Substation Telemetry
               </h2>
-              <div className="text-xs text-slate-400">
-                External 230kV bulk transmission feed, underground trunk conduits & distribution nodes
+              <div className="text-[10px] sm:text-xs text-slate-400 truncate max-w-[260px] sm:max-w-none">
+                External 230kV bulk feed, underground trunk conduits & distribution nodes
               </div>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors"
+            className="p-2 min-w-[40px] min-h-[40px] flex items-center justify-center text-slate-400 hover:text-white rounded-xl hover:bg-slate-800 transition-colors active:scale-95"
+            aria-label="Close grid modal"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Content */}
-        <div className="p-6 space-y-5 overflow-y-auto max-h-[70vh]">
+        <div className="p-3.5 sm:p-6 space-y-4 sm:space-y-5 overflow-y-auto max-h-[82vh]">
           {/* External Regional 230kV Grid Supply Substation Card */}
           <div className="p-4 bg-gradient-to-r from-amber-950/30 to-slate-900/80 border border-amber-500/40 rounded-xl space-y-4 font-mono">
             <div className="flex items-center justify-between border-b border-slate-800/80 pb-2">

@@ -49,40 +49,41 @@ export const SolarAnalyticsModal: React.FC<SolarAnalyticsModalProps> = ({
   ];
 
   return (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4">
-      <div className="max-w-4xl w-full bg-slate-950 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] animate-in fade-in zoom-in-95 duration-200">
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-2 sm:p-4">
+      <div className="max-w-4xl w-full bg-slate-950 border border-slate-800 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[96vh] sm:max-h-[90vh] animate-in fade-in zoom-in-95 duration-200">
         {/* Header */}
-        <div className="p-5 border-b border-slate-800 bg-slate-900/60 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400">
-              <Sun className="w-5 h-5" />
+        <div className="p-3.5 sm:p-5 border-b border-slate-800 bg-slate-900/60 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 shrink-0">
+              <Sun className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
             <div>
-              <div className="flex items-center gap-2">
-                <h2 className="text-base font-bold text-white tracking-wide">
+              <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+                <h2 className="text-sm sm:text-base font-bold text-white tracking-wide">
                   Solar & Battery Storage Analytics (BESS)
                 </h2>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
-                  {environment.isDaytime ? 'ACTIVE PV GENERATION' : 'NIGHT STANDBY'}
+                <span className="px-1.5 sm:px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 whitespace-nowrap">
+                  {environment.isDaytime ? 'ACTIVE PV' : 'NIGHT STANDBY'}
                 </span>
               </div>
-              <div className="text-xs text-slate-400">
-                District rooftop photovoltaic generation, localized battery storage and microgrid self-consumption
+              <div className="text-[10px] sm:text-xs text-slate-400 truncate max-w-[260px] sm:max-w-none">
+                District rooftop PV arrays, localized battery storage and microgrid self-consumption
               </div>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors"
+            className="p-2 min-w-[40px] min-h-[40px] flex items-center justify-center text-slate-400 hover:text-white rounded-xl hover:bg-slate-800 transition-colors active:scale-95"
+            aria-label="Close solar analytics"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Content */}
-        <div className="p-6 space-y-6 overflow-y-auto flex-1 font-sans">
+        <div className="p-3.5 sm:p-6 space-y-4 sm:space-y-6 overflow-y-auto flex-1 font-sans">
           {/* Top 4 Real-time Telemetry KPI Cards */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4">
             {/* 1. Real-time PV Generation */}
             <div className="p-4 bg-slate-900/70 border border-slate-800 rounded-xl space-y-1">
               <div className="flex items-center justify-between text-xs text-slate-400">

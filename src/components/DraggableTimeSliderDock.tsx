@@ -52,10 +52,11 @@ export const DraggableTimeSliderDock: React.FC<DraggableTimeSliderDockProps> = (
     const dockHeight = rect.height;
 
     // Viewport boundaries clamping
-    const minX = 16;
-    const maxX = window.innerWidth - dockWidth - 16;
-    const minY = 72; // below top header
-    const maxY = window.innerHeight - dockHeight - 16;
+    const isMobile = window.innerWidth < 768;
+    const minX = 8;
+    const maxX = window.innerWidth - dockWidth - 8;
+    const minY = isMobile ? 60 : 72; // below top header
+    const maxY = window.innerHeight - dockHeight - (isMobile ? 76 : 16); // above mobile bottom bar
 
     const nextX = Math.max(minX, Math.min(maxX, dragStartRef.current.startX + deltaX));
     const nextY = Math.max(minY, Math.min(maxY, dragStartRef.current.startY + deltaY));
@@ -83,10 +84,11 @@ export const DraggableTimeSliderDock: React.FC<DraggableTimeSliderDockProps> = (
     const handleResize = () => {
       if (position && dockRef.current) {
         const rect = dockRef.current.getBoundingClientRect();
-        const minX = 16;
-        const maxX = window.innerWidth - rect.width - 16;
-        const minY = 72;
-        const maxY = window.innerHeight - rect.height - 16;
+        const isMobile = window.innerWidth < 768;
+        const minX = 8;
+        const maxX = window.innerWidth - rect.width - 8;
+        const minY = isMobile ? 60 : 72;
+        const maxY = window.innerHeight - rect.height - (isMobile ? 76 : 16);
 
         setPosition((prev) => {
           if (!prev) return null;
@@ -102,6 +104,8 @@ export const DraggableTimeSliderDock: React.FC<DraggableTimeSliderDockProps> = (
     return () => window.removeEventListener('resize', handleResize);
   }, [position]);
 
+  const isMobile = typeof window !== 'undefined' ? window.innerWidth < 768 : false;
+
   const style: React.CSSProperties = position
     ? {
         position: 'fixed',
@@ -111,7 +115,7 @@ export const DraggableTimeSliderDock: React.FC<DraggableTimeSliderDockProps> = (
       }
     : {
         position: 'fixed',
-        bottom: '24px',
+        bottom: isMobile ? '72px' : '24px',
         left: '50%',
         transform: 'translateX(-50%)',
       };
@@ -120,25 +124,25 @@ export const DraggableTimeSliderDock: React.FC<DraggableTimeSliderDockProps> = (
     <div
       ref={dockRef}
       style={style}
-      className={`z-30 select-none transition-shadow ${
+      className={`z-30 select-none transition-shadow max-w-[calc(100vw-16px)] ${
         isDragging ? 'shadow-2xl shadow-cyan-500/20 cursor-grabbing ring-1 ring-cyan-400/50' : ''
       }`}
     >
-      <div className="flex items-center bg-slate-950/90 border border-slate-800/90 rounded-2xl backdrop-blur-xl shadow-2xl p-1 gap-1">
+      <div className="flex items-center bg-slate-950/95 border border-slate-800/90 rounded-2xl backdrop-blur-xl shadow-2xl p-1 gap-1">
         {/* Drag Handle with Grip Icon */}
         <div
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
           onPointerCancel={handlePointerUp}
-          className={`flex flex-col items-center justify-center px-1.5 py-3 rounded-xl transition-colors touch-none ${
+          className={`flex flex-col items-center justify-center px-1 sm:px-1.5 py-2.5 sm:py-3 rounded-xl transition-colors touch-none ${
             isDragging
               ? 'bg-cyan-500/20 text-cyan-300 cursor-grabbing'
-              : 'hover:bg-slate-800/80 text-slate-500 hover:text-slate-300 cursor-grab'
+              : 'hover:bg-slate-800/80 text-slate-500 hover:text-slate-300 cursor-grab active:bg-slate-800'
           }`}
           title="Drag to position timeline dock anywhere"
         >
-          <GripHorizontal className="w-4 h-4" />
+          <GripHorizontal className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
         </div>
 
         {/* Time Slider Component */}

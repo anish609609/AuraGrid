@@ -36,33 +36,34 @@ export const TariffSettingsModal: React.FC<TariffSettingsModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4">
-      <div className="max-w-md w-full bg-slate-950 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-2 sm:p-4">
+      <div className="max-w-md w-full bg-slate-950 border border-slate-800 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[96vh] sm:max-h-[90vh] animate-in fade-in zoom-in-95 duration-200">
         {/* Header */}
-        <div className="p-5 border-b border-slate-800 bg-slate-900/60 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
-              <DollarSign className="w-5 h-5" />
+        <div className="p-3.5 sm:p-5 border-b border-slate-800 bg-slate-900/60 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shrink-0">
+              <DollarSign className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
             <div>
-              <h2 className="text-base font-bold text-white tracking-wide">
-                Electricity Tariff Parameters
+              <h2 className="text-sm sm:text-base font-bold text-white tracking-wide">
+                Tariff Parameters
               </h2>
-              <div className="text-xs text-slate-400">
+              <div className="text-[10px] sm:text-xs text-slate-400 truncate max-w-[220px] sm:max-w-none">
                 Configure utility rate model and demand charge pricing
               </div>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors"
+            className="p-2 min-w-[40px] min-h-[40px] flex items-center justify-center text-slate-400 hover:text-white rounded-xl hover:bg-slate-800 transition-colors active:scale-95"
+            aria-label="Close tariff modal"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Form Body */}
-        <form onSubmit={handleSave} className="p-6 space-y-4">
+        <form onSubmit={handleSave} className="p-4 sm:p-6 space-y-4 overflow-y-auto">
           <div className="space-y-1.5">
             <label className="text-xs font-semibold text-slate-200 flex items-center justify-between">
               <span>Energy Charge Rate (₹ / kWh)</span>

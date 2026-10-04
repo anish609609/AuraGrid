@@ -68,114 +68,115 @@ export const FeederSubstationDashboard: React.FC<FeederSubstationDashboardProps>
     : 0;
 
   return (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4">
-      <div className="max-w-4xl w-full bg-slate-950 border border-amber-500/40 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh] animate-in fade-in zoom-in-95 duration-200 font-sans">
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-2 sm:p-4">
+      <div className="max-w-4xl w-full bg-slate-950 border border-amber-500/40 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[96vh] sm:max-h-[92vh] animate-in fade-in zoom-in-95 duration-200 font-sans">
         {/* Header */}
-        <div className="p-5 border-b border-slate-800 bg-gradient-to-r from-amber-950/40 via-slate-900/80 to-slate-950 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 shadow-lg shadow-amber-500/10">
-              <Zap className="w-5 h-5 fill-amber-400" />
+        <div className="p-3.5 sm:p-5 border-b border-slate-800 bg-gradient-to-r from-amber-950/40 via-slate-900/80 to-slate-950 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 shadow-lg shadow-amber-500/10 shrink-0">
+              <Zap className="w-4 h-4 sm:w-5 sm:h-5 fill-amber-400" />
             </div>
             <div>
-              <div className="flex items-center gap-2">
-                <h2 className="text-base font-bold text-white tracking-wide">
-                  Regional 230kV Feeder Substation Dashboard
+              <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+                <h2 className="text-sm sm:text-base font-bold text-white tracking-wide">
+                  Regional 230kV Feeder Substation
                 </h2>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
-                  BULK TRANSMISSION SUPPLY
+                <span className="px-1.5 sm:px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 whitespace-nowrap">
+                  BULK SUPPLY
                 </span>
               </div>
-              <div className="text-xs text-slate-400">
-                Main High-Voltage Transmission Yard · Perimeter North Interconnection (Step-down 230kV → 33kV)
+              <div className="text-[10px] sm:text-xs text-slate-400 truncate max-w-[260px] sm:max-w-none">
+                Main Transmission Yard · Perimeter North (230kV → 33kV)
               </div>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors"
+            className="p-2 min-w-[40px] min-h-[40px] flex items-center justify-center text-slate-400 hover:text-white rounded-xl hover:bg-slate-800 transition-colors active:scale-95"
+            aria-label="Close dashboard"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Content */}
-        <div className="p-6 space-y-6 overflow-y-auto flex-1">
+        <div className="p-3.5 sm:p-6 space-y-4 sm:space-y-6 overflow-y-auto flex-1">
           {/* Quick Action Toolbar */}
-          <div className="flex flex-wrap items-center justify-between gap-3 p-3 bg-slate-900/60 border border-slate-800 rounded-xl text-xs">
+          <div className="flex flex-wrap items-center justify-between gap-2.5 p-3 bg-slate-900/60 border border-slate-800 rounded-xl text-xs">
             <div className="flex items-center gap-2 text-slate-300">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="font-semibold">Substation Status:</span>
-              <span className="font-mono text-emerald-300 font-bold">ONLINE · NORMAL CONTINUOUS FEED</span>
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+              <span className="font-semibold text-slate-200">Status:</span>
+              <span className="font-mono text-emerald-300 font-bold text-[11px] sm:text-xs">ONLINE · NORMAL FEED</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 w-full sm:w-auto">
               {onFocusSubstation && (
                 <button
                   onClick={onFocusSubstation}
-                  className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center gap-1.5 transition-all text-xs font-medium"
+                  className="flex-1 sm:flex-initial px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center justify-center gap-1.5 transition-all text-xs font-medium min-h-[36px]"
                 >
                   <Camera className="w-3.5 h-3.5 text-cyan-400" />
-                  <span>Inspect Yard in 3D</span>
+                  <span>Inspect in 3D</span>
                 </button>
               )}
               {onToggleUndergroundMode && (
                 <button
                   onClick={onToggleUndergroundMode}
-                  className="px-3 py-1.5 rounded-lg bg-amber-950/40 hover:bg-amber-900/40 text-amber-300 border border-amber-500/40 flex items-center gap-1.5 transition-all text-xs font-medium"
+                  className="flex-1 sm:flex-initial px-3 py-1.5 rounded-lg bg-amber-950/40 hover:bg-amber-900/40 text-amber-300 border border-amber-500/40 flex items-center justify-center gap-1.5 transition-all text-xs font-medium min-h-[36px]"
                 >
                   <Layers className="w-3.5 h-3.5 text-amber-400" />
-                  <span>View Underground Trunks</span>
+                  <span>View Trunks</span>
                 </button>
               )}
             </div>
           </div>
 
           {/* Section 1: Active Power Inflow KPIs */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 font-mono">
-            <div className="p-4 bg-slate-900/70 border border-amber-500/30 rounded-xl space-y-1">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 font-mono">
+            <div className="p-3 sm:p-4 bg-slate-900/70 border border-amber-500/30 rounded-xl space-y-1">
               <span className="text-[10px] font-sans text-slate-400 uppercase tracking-wider block">
                 Active Bulk Inflow
               </span>
-              <div className="text-2xl font-bold text-amber-300">
+              <div className="text-xl sm:text-2xl font-bold text-amber-300">
                 {(simulationResult.incomingBulkGridKW / 1000).toFixed(2)}{' '}
                 <span className="text-xs font-normal text-slate-400">MW</span>
               </div>
-              <span className="text-[11px] text-slate-400 font-sans block">
+              <span className="text-[10px] sm:text-[11px] text-slate-400 font-sans block">
                 {simulationResult.incomingBulkGridKW.toLocaleString()} kW bulk draw
               </span>
             </div>
 
-            <div className="p-4 bg-slate-900/70 border border-slate-800 rounded-xl space-y-1">
+            <div className="p-3 sm:p-4 bg-slate-900/70 border border-slate-800 rounded-xl space-y-1">
               <span className="text-[10px] font-sans text-slate-400 uppercase tracking-wider block">
                 Trunk Feed A (North)
               </span>
-              <div className="text-2xl font-bold text-cyan-300">
+              <div className="text-xl sm:text-2xl font-bold text-cyan-300">
                 {(nodeA.currentLoadKW / 1000).toFixed(2)}{' '}
                 <span className="text-xs font-normal text-slate-400">MW</span>
               </div>
-              <span className="text-[11px] text-slate-400 font-sans block">
+              <span className="text-[10px] sm:text-[11px] text-slate-400 font-sans block">
                 {shareA}% share to Grid A
               </span>
             </div>
 
-            <div className="p-4 bg-slate-900/70 border border-slate-800 rounded-xl space-y-1">
+            <div className="p-3 sm:p-4 bg-slate-900/70 border border-slate-800 rounded-xl space-y-1">
               <span className="text-[10px] font-sans text-slate-400 uppercase tracking-wider block">
                 Trunk Feed B (South)
               </span>
-              <div className="text-2xl font-bold text-emerald-300">
+              <div className="text-xl sm:text-2xl font-bold text-emerald-300">
                 {(nodeB.currentLoadKW / 1000).toFixed(2)}{' '}
                 <span className="text-xs font-normal text-slate-400">MW</span>
               </div>
-              <span className="text-[11px] text-slate-400 font-sans block">
+              <span className="text-[10px] sm:text-[11px] text-slate-400 font-sans block">
                 {shareB}% share to Grid B
               </span>
             </div>
 
-            <div className="p-4 bg-slate-900/70 border border-slate-800 rounded-xl space-y-1">
+            <div className="p-3 sm:p-4 bg-slate-900/70 border border-slate-800 rounded-xl space-y-1">
               <span className="text-[10px] font-sans text-slate-400 uppercase tracking-wider block">
-                Transformer Utilization
+                Transformer Load
               </span>
               <div
-                className={`text-2xl font-bold ${
+                className={`text-xl sm:text-2xl font-bold ${
                   feeder.utilizationPct > 85
                     ? 'text-rose-400'
                     : feeder.utilizationPct > 70
@@ -185,8 +186,8 @@ export const FeederSubstationDashboard: React.FC<FeederSubstationDashboardProps>
               >
                 {feeder.utilizationPct}%
               </div>
-              <span className="text-[11px] text-slate-400 font-sans block">
-                5,000 kW (5.0 MW) capacity
+              <span className="text-[10px] sm:text-[11px] text-slate-400 font-sans block">
+                5,000 kW (5.0 MW)
               </span>
             </div>
           </div>
