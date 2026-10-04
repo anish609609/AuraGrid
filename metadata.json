@@ -1,0 +1,6 @@
+{
+  "name": "AuraGrid Smart City Digital Twin",
+  "description": "Interactive 3D energy, electrical grid, and electricity cost analytics digital twin for a five-building smart city district.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
